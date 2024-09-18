@@ -63,3 +63,15 @@ type uOrAny = unknown | any; // any 타입으로 추론
  */
 type uAndString = unknown & string; // string
 type uAndAny = unknown & any; // any
+
+/**
+ * Operator 사용
+ */
+let number1: unknown = 10;
+let number2: unknown = 20;
+// number1 + number2;
+// number1 - number2;
+
+// 동등/일치 연산자는 가능
+number1 == number2;
+number1 === number2;
