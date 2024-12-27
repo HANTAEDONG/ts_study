@@ -7,12 +7,14 @@ function whatValue(value: any) {
 
 const value = whatValue("test");
 
+// T 타입을 매개변수로 받고 T 타입을 반환
 function genericWhatValue<T>(value: T): T {
   return value;
 }
 
 const genericResult = genericWhatValue<string>("hello"); // string 타입으로 제네릭화 => genericResult: string
 
+// 제네릭 타입 유추
 const genericResult2 = genericWhatValue("123");
 
 function multipleGenerics<X, Y, Z>(value1: X, value2: Y, value3: Z) {
@@ -33,3 +35,31 @@ function getTuple<X, Y>(val1: X, val2: Y) {
 }
 
 const tuple = getTuple(true, 100); // const tuple: readonly [boolean, number]
+
+class Idol {
+  name: string;
+  age: number;
+  constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
+  }
+}
+
+class Car {
+  brand: string;
+  codeName: string;
+  constructor(brand: string, codeName: string) {
+    this.brand = brand;
+    this.codeName = codeName;
+  }
+}
+
+function instantiator<T extends { new (...args: any[]): {} }>(
+  constructor: T,
+  ...args: any[]
+) {
+  return new constructor(...args);
+}
+
+console.log(instantiator(Idol, "아이유", 23));
+console.log(instantiator(Car, "Hyundai", "123"));
