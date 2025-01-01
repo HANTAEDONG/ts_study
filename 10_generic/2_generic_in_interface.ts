@@ -1,6 +1,8 @@
 /**
  * Generic in Interface
  */
+
+// data가 list로 들어가게 되는데 어떤 타입이든 들어가나, 타입체크를 받고 싶은 상황
 interface Cache<T> {
   data: T[];
   lastUpdate: Date;

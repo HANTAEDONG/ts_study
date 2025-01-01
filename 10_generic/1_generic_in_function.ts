@@ -54,12 +54,12 @@ class Car {
   }
 }
 
-function instantiator<T extends { new (...args: any[]): {} }>(
+function instantiator2<T extends { new (...args: any[]): {} }>(
   constructor: T,
   ...args: any[]
 ) {
   return new constructor(...args);
 }
 
-console.log(instantiator(Idol, "아이유", 23));
-console.log(instantiator(Car, "Hyundai", "123"));
+console.log(instantiator2(Idol, "아이유", 23));
+console.log(instantiator2(Car, "Hyundai", "123"));

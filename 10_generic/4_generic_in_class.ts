@@ -1,31 +1,40 @@
-/**
- * Class에서 Generic 사용하기
- */
 class Pagination<Data, Message> {
   data: Data[] = [];
   message?: Message;
-  lastFetchedAt?: Data;
+  lastFetchedAt?: Date;
 }
 
-const pgData = new Pagination<number, string>();
-pgData.data;
-pgData.message;
-pgData.lastFetchedAt;
+const pgData: Pagination<string, string> = {
+  data: ["hello", "test"],
+  message: "test",
+  lastFetchedAt: new Date(),
+};
 
-// 제네릭 사용하고 클래스 constructor를 통해 초기화까지 진행
+const pgData2 = new Pagination<number, string>();
+pgData2.data; // number[]
+pgData2.message; // string | undefined
+pgData2.lastFetchedAt; // Date | undefined
+
 class Pagination2<Data, Message> {
   data: Data[];
   message?: Message;
   lastFetchedAt?: Date;
-  constructor(data: Data[], message: Message, lastFetchedAt: Date) {
+
+  constructor(data: Data[], message?: Message, lastFetchedAt?: Date) {
     this.data = data;
     this.message = message;
     this.lastFetchedAt = lastFetchedAt;
   }
 }
 
-const pagination = new Pagination2<string, string>(
-  ["1", "2", "3"],
-  "안녕",
-  new Date()
-);
+const pagination2 = new Pagination2([123, 456]);
+pagination2.data; // number[]
+pagination2.message; // unknown
+pagination2.lastFetchedAt; // Data | undefined
+
+class DefaultGeneric<T = boolean> {
+  data: T[] = [];
+}
+
+const defaultGeneric = new DefaultGeneric();
+defaultGeneric.data = [true, false, false];
